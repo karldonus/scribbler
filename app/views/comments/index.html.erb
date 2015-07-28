@@ -1,0 +1,11 @@
+<h2>Comments <a href="/contents/new">(+)</a></h2>
+
+<ul>
+  <% @contents.each do |content| %>
+    <li>
+      <a href="/contents/<%= content.id %>">
+        <%= content.commenter %> - <%= content.post.author %>
+      </a>
+    </li>
+  <% end %>
+</ul>
