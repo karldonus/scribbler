@@ -3,8 +3,10 @@ class PostsController < ApplicationController
     @posts = Post.all.order(:id).reverse
   end
 
+
   def show
     @post = Post.find(params[:id])
+    @user = User.find(@post.user_id)
   end
 
   def new
@@ -12,9 +14,10 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.create!(post_params)
+    @user = User.find(session[:user]["id"])
+    @post = @user.posts.create!(post_params)
 
-    redirect_to posts_path(@artist)
+    redirect_to posts_path(@post)
   end
 
   def edit
