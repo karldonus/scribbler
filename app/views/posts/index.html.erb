@@ -1,13 +1,10 @@
-<h2>Posts <a href="/posts/new">(+)</a></h2>
+<h2>Field Reports <%= link_to image_tag("plus-circle.png", size: "20"), new_post_path%></h2>
 
 <ul>
   <% @posts.each do |post| %>
     <li>
-      <a href="/posts/<%= post.id %>">
-        <%= post.author %>
+      <%= link_to(post.post_content, post_path(post))%>
       </a>
-      <p><%= post.post_content %></p>
-      
     </li>
   <% end %>
 </ul>

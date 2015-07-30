@@ -1,20 +1,7 @@
-<h2>Edit Post</h2>
+<h2>Edit Field Report</h2>
 
-<form action="/posts/<%= @artist.id %>" method="post">
-  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-  <input type="hidden" name="_method" value="put">
+<%= render partial: "form" %>
 
-  <label for="post[author]">Author:</label>
-  <input name="post[author]" value="<%= @post.author %>">
-
-  <label for="post[post_content]">Edit Your Text Here:</label>
-  <input name="post[post_content]" value="<%= @artist.post_content %>">
-  
-  <input type="submit" value="Edit">
-</form>
-
-<form action="/posts/<%= @post.id %>" method="post">
-  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-  <input type="hidden" name="_method" value="delete">
-  <input class="button-delete" type="submit" value="Delete!">
-</form>
+<%= form_for(@post, method: :delete) do |f| %>
+  <%= f.submit "Delete Record"%>
+<% end %>

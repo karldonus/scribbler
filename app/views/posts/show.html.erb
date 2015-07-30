@@ -1,16 +1,41 @@
-<h2><%= @post.author %> <a href="/posts/<%= @artist.id %>/edit">(edit)</a></h2>
-<p><%= @post.post_content %></p>
+<h3>Author: <%= @post.author %></h3>
+<h4>Post: <%= @post.post_content %></h4>
+<p><%= link_to("(edit)", edit_post_path(@post))%></p>
 
 
 <h3>Comments</h3>
-<ul>
-  <% @post.comments.each do |comment| %>
-    <!-- build the list element for each song -->
-    <li>
-      <a href="/comments/<%= comment.id %>">
-        <%= comment.comment_content %> (<%= comment.commenter %>)
-      </a>
-    </li>
+<p>
+  <%= @post.comments.each do |comment|%>
+  Commenter:
+  <br>
+  <%= "#{comment.commenter}" %>
+  <br>
+  <%= "Comment: #{comment.comment_content}" %>
+  <br>
+  <%= "Posted: #{time_ago_in_words(comment.created_at)} ago" %>
+  <%= form_for([@post, comment], method: :delete) do |f| %>
+  <%= f.submit "Delete Comment" %>
+  <% end  %>
 
+
+  <br>
+  <br>
   <% end %>
-</ul>
+</p>
+
+<h3>Write a New Comment</h3>
+<p>
+<%= form_for([@post, Comment.new]) do |f| %>
+
+  <%= f.label :commenter %>
+    <br>
+  <%= f.text_field :commenter %>
+  <br>
+  <br>
+  <%= f.label :comment_content, "Comment Here:" %>
+  <br>
+  <%= f.text_area :comment_content %>
+
+  <%= f.submit "Add Comment" %>
+<% end  %>
+</p>

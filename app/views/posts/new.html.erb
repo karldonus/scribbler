@@ -1,13 +1,3 @@
-<h2>New Post</h2>
+<h2>New Blog Post</h2>
 
-<form action="/posts" method="post" >
-  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-
-  <label for="post[author]">Author:</label>
-  <input name="post[author]" value="<%= @post.author %>">
-
-  <label for="post[post_content]">Write Your Text Here:</label>
-  <input name="post[post_content]" value="<%= @artist.post_content %>">
-
-  <input type="submit" value="Create">
-</form>
+<%= render partial: "form" %>

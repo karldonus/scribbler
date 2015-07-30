@@ -3,37 +3,19 @@ class CommentsController < ApplicationController
     @comments = Comment.all.order(:id).reverse
   end
 
-  def show
-    @comment = Comment.find(params[:id])
-  end
-
-  def new
-    @comment = Comment.new
-  end
-
   def create
-    @comment = Comment.new(comment_params)
-    if @comment.save
-      redirect_to "/comments/#{@comment.id}"
-    else
-      redirect_to "/posts/new"
-    end
-  end
+    @post = Post.find(params[:post_id])
+    @comment = @post.comments.create(comment_params)
 
-  def edit
-    @comment = Comment.find(params[:id])
-  end
-
-  def update
-    @comment = Comment.find(comment_params)
-    @comment.update(params[:comment])
-    redirect_to "/comments/#{@comment.id}"
+    redirect_to post_path(@post)
   end
 
   def destroy
+    @post = Post.find(params[:post_id])
     @comment = Comment.find(params[:id])
     @comment.destroy
-    redirect_to "/"
+
+    redirect_to post_path(@post)
   end
 
   private
