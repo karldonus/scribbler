@@ -9,8 +9,15 @@
 <body>
   <h1>FBI DC Office Database</h1>
   <nav>
+    <% if session[:user] %>
+      <a href="/sign_out"><%= session[:user]["username"] %>: sign out</a></h2>
+    <% else %>
+      <a href="/sign_up">Sign up</a>
+      <a href="/sign_in">Sign in</a>
+    <% end %>
     <%= link_to("All Entries", posts_path)%>
   </nav>
+  <h2><%= flash[:notice] %></h2>
 
 <%= yield %>
 
