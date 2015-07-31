@@ -42,8 +42,8 @@ class UsersController < ApplicationController
   end
 
   def sign_out
-    reset_session
     redirect_to root_url
+    reset_session
     flash[:notice] = "You're signed out!"
   end
 

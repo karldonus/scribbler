@@ -16,7 +16,6 @@ class PostsController < ApplicationController
   def create
     @user = User.find(session[:user]["id"])
     @post = @user.posts.create!(post_params)
-
     redirect_to posts_path(@post)
   end
 
@@ -39,7 +38,9 @@ class PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:author, :post_content, :created_at, :updated_at, :post_id)
+    params.require(:post).permit(:title, :post_content, :created_at, :updated_at, :post_id)
   end
-
+  def comment_params
+    params.require(:comment).permit(:comment_content, :created_at, :updated_at, :post_id)
+  end
 end
