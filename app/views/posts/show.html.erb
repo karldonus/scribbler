@@ -5,33 +5,24 @@
 <h3>Comments</h3>
 <p>
   <% @post.comments.each do |comment|%>
-  Commenter:
-  <br>
-  <%= "#{comment.commenter}" %>
-  <br>
-  <%= "Comment: #{comment.comment_content}" %>
-  <br>
-  <%= "Posted: #{time_ago_in_words(comment.created_at)} ago" %>
+
+  <ul>Commenter: <%= @user.username %></ul>
+  <ul><%= "Comment: #{comment.comment_content}" %></ul>
+  <ul><%= "Posted: #{time_ago_in_words(comment.created_at)} ago" %></ul>
+
   <%= form_for([@post, comment], method: :delete) do |f| %>
   <%= f.submit "Delete Comment" %>
   <% end  %>
 
+  <br>
 
-  <br>
-  <br>
   <% end %>
 </p>
 
-<h3>Write a New Comment</h3>
 <p>
 <%= form_for([@post, Comment.new]) do |f| %>
 
-  <%= f.label :commenter %>
-    <br>
-  <%= f.text_field :commenter %>
-  <br>
-  <br>
-  <%= f.label :comment_content, "Comment Here:" %>
+  <%= f.label :comment_content, "Reply Here:" %>
   <br>
   <%= f.text_area :comment_content %>
 

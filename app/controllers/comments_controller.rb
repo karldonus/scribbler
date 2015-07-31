@@ -4,11 +4,13 @@ class CommentsController < ApplicationController
   end
 
   def create
+    @user = User.find(session[:user]["id"])
     @post = Post.find(params[:post_id])
     @comment = @post.comments.create(comment_params)
 
     redirect_to post_path(@post)
   end
+
 
   def destroy
     @post = Post.find(params[:post_id])
