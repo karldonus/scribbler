@@ -1,28 +1,21 @@
-== README
+Live Example: https://wdi6-donus-scribblr.herokuapp.com/
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
+* Areas to Improve
+Hand-rolled authentication rather than used Devise to have a better
+understanding of the process. Caused a few headaches, but relatively workable.
+Would like to change comments view's display of user_id integer to username
+string. Working for Post, but not comment. Also, I'd like to display
+the user who most recently edited the post within the edit view...unfortunately
+that may need to track two foreign_ids (one for creation and one for edit).
 
 * Ruby version
+2.0
 
 * System dependencies
+Most recent version of Chrome (may not support all versions of I.E.)
 
 * Configuration
-
-* Database creation
+Recommend enabling cookies for fullest experience.
 
 * Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+Be sure to migrate, but do not recommend seeding.
